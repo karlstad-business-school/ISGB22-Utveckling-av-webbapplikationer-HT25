@@ -40,22 +40,22 @@ class GameData {
 }
 
 /*
-    1. Lägg till attributet milliseconds i GameData och tilldela den värdet 1000.
-    
-    2. Instansiera ett objekt ur klassen GameData och namnge det oGameData.
-    
-    2. Lägg till lyssnare för load
-    2.1. Lägg till lyssnare för keydown b eller B
-    2.1.1. Lägg till en timer.
-    2.1.2. Skapa ett img-element
-    2.1.3. Ändra Top, left, alt, src för img-elementet.
-    2.1.4. Ändra witdh, height, position för img-elementet.
-    2.1.5. Lägg till img-elementet till DOM:en.
-    2.1.6. Lägg till lyssnare på click på img-elementet
 
-    2.2. Lägg till lyssnare för keydown e eller E.
-    2.2.1. Avsluta spelet.
-    2.2.2. Visa information för spelaren.
-    2.2.3. Förbered för nytt spel.
+1. Lägg till attributet miliseconds i GameData och instansiera sedan (globalt) ett objekt ur GameData oGameData.
+2. Lägg till en lyssnare för load.
+    a. Lägg till en Lyssnare för keydown med b eller B.
+    b. Avsluta timern om det finns en.
+    c. Skapa en timer med en anonym funktion som exekverar antal millisekunder som attributet milliseconds.
+    d. I den anonyma funktionen skapa ett nytt img-element (se klassen GameData för stöd) och placera i gameField-elementet. Positionen för det nya img-elementet ska slumpas fram. Kom också ihåg att öka attributet antalSpoken.
+    e. Lägg till en lyssnare för click på det nya img-elementet. Om händelsen inträffar öka attributet antalKlickadeSpoken med ett och ta sedan bort aktuellt img-element från
+    f. Utöka keydown lyssnaren med att kontrollera för e eller E.
+        a. Om denna kontroll är true:
+            1. avsluta timern (om det finns någon).
+            2. För användaren på lämpligt sätt (t ex alert()) visa hur många spöken det totalt har funnits på spelplanen och hur många användaren har fångat (klickat på).
+            3. Anropa metoderna prepareForNewGame() och removeGhosts().
+    3. Om tid finnes laborera med bildernas storlek och antalet millisekunder det skall gå mellan att varje nytt img-element skapas
+
 */
+
+
 
