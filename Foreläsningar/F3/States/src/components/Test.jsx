@@ -6,7 +6,7 @@ function Test(){
     const changeColor = () => {
         setColor(prev => ({
             ...prev,
-            r: q,
+            r: 0,
         }));
     }
 
