@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Reaction(props) {
 
     let {id, name, image} = props;
@@ -11,7 +13,7 @@ function Reaction(props) {
             />
             <p className="pokemon-card-id"># {id}</p>
             <p className="pokemon-card-name">{name}</p>
-            <a href="#" className="pokemon-card-view">View</a>
+            <Link to={"/view/" + id} className="pokemon-card-view">View</Link>
         </div>
     );
 }
