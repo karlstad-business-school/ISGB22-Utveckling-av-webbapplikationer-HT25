@@ -1,8 +1,9 @@
 import "./SingleView.css";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function SingleView(){
+    const [pokemon, setPokemon] = useState(null);
     let { id } = useParams();
     let navigate = useNavigate();
 
@@ -23,16 +24,36 @@ function SingleView(){
     useEffect(() => {
         if(isValid(id) == false){
             navigate("/view/instructions", {replace: true})
+            return
         }
+
+        const fetchPokemon = async () => {
+            try {
+                console.log("Fetching pokemon with id: " + id);
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+                const data = await response.json();
+                console.log(data);
+                setPokemon(data);
+
+                
+            } 
+            catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchPokemon();
     }, []);
 
 
     return (
-        <div className="single-view">
-            <Link className="back-btn" to="/">Back</Link>
-            <h4>ID: { id }</h4>
-        </div>
-    )
+        (pokemon && (
+            <div className="single-view">
+                <h4>ID : {id}</h4>
+                <h4>Name: {pokemon.name}</h4>
+            </div>
+        )))
+      
 }
 
 

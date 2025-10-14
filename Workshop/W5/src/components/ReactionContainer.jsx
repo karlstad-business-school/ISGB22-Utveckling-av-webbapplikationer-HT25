@@ -7,27 +7,44 @@ function ReactionContainer() {
     const [dummyList, setDummyList] = useState([]);
 
     useEffect(() => {
-        let dummyData = [
-            {
-                "id": 1,
-                "name": "Bulbasaur",
-                "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
-            },
-            {
-                "id": 2,
-                "name": "Ivysaur",
-                "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
-            },
+        
+        const fetchPokemon = async () => {
 
-            {
-                "id": 3,
-                "name": "Venusaur",
-                "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
+            try {
+                let response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10");
+                const data = await response.json();
+
+                console.log(data);
+
+                const transformedData = data.results.map((pokemon) => {
+                    const id = pokemon.url.split("/").filter(Boolean).pop();
+
+                    return {
+                        id: id,
+                        name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
+                        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon"
+                    }
+
+                });
+
+                console.log(transformedData);
+                setDummyList(transformedData);
+                setPokemonList(transformedData);
+
+
+
+
+
+
             }
-        ]
+            catch (error) {
+                console.log(error);
+            }
 
-        setDummyList(dummyData);
-        setPokemonList(dummyData);
+        }
+
+        fetchPokemon();
+    
     }, []);
 
     const filterPokemon = (e) => {
