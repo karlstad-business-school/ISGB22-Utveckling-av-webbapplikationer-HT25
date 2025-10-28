@@ -24,19 +24,35 @@
         <main>    
             <?php
 
-                define("IMG", "<img src='http://localhost:3000/server/ISGB22-Utveckling-av-webbapplikationer-HT25/Forelasningar/F8/bilder/");
+               
+                define("IMG", "<img src='http://localhost:3000/server/ISGB22-Utveckling-av-webbapplikationer-HT25/Foreläsningar/F8/slutkod/bilder/");
 
                 $summa = 0;
                 $antal = 0;
 
                 if( isset( $_GET["skicka"] ) ) {
 
+                    $summa = $_GET["summa"];
                     //Här skriver du din kod!
+                    for($i=1; $i<=6;$i++){
+                        $slumptal = rand(1,6);
+                        echo(IMG . $slumptal . ".png' alt='" . $slumptal . "' />");
+                        $summa = $summa + $slumptal;
+                    }
+
+                    $antal = $_GET["antal"] + 1;
+
+                    if($summa >= 100) {
+                        echo("<h2>Grattis! Du nådde 100 på " . $antal . " omgångar!</h2>");
+                    } else {
+                        echo("<h2>Din summa är " . $summa . " efter " . $antal . " omgångar.</h2>");
+                    }
+
 
                 }
 
             ?>
-
+            <br>
             <a href="<?php echo($_SERVER["PHP_SELF"] . "?skicka=skicka&summa=$summa&antal=$antal"); ?>" class="btn btn-primary">Skicka</a>
             <a href="<?php echo($_SERVER["PHP_SELF"]); ?>" class="btn btn-secondary">Rensa</a>
         </main>

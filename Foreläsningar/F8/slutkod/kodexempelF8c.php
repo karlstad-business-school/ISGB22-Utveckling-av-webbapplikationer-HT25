@@ -1,17 +1,43 @@
 <?php
 
     $antal = 0;
+    $summa = 0;
     $stringToEcho = "";
 
     if( isset( $_POST["skicka"] ) ) {
 
-    }
+        if(isset($_COOKIE["antal"])){
+         $antal = $_COOKIE["antal"];
+        }
 
+        if(isset($_COOKIE["summa"])){
+         $summa = $_COOKIE["summa"];
+        }
+
+        //
+        define("IMG", "<img src='http://localhost:3000/server/ISGB22-Utveckling-av-webbapplikationer-HT25/Foreläsningar/F8/slutkod/bilder/");
+            for($i=1; $i<=6;$i++){
+            $slumptal = rand(1,6);
+            $stringToEcho = $stringToEcho . IMG . $slumptal . ".png' alt='" . $slumptal . "' />";
+            $summa = $summa + $slumptal;
+        }
+
+        $antal = $antal + 1;
+        setcookie("summa", $summa, time() + 3600);
+        setcookie("antal", $antal, time() + 3600);
+
+        if($summa >= 100) {
+            $stringToEcho = $stringToEcho . "<h2>Grattis! Du nådde 100 på " . $antal . " omgångar!</h2>";
+        } else {
+            $stringToEcho = $stringToEcho . "<h2>Din summa är " . $summa . " efter " . $antal . " omgångar.</h2>";
+        }
+
+    }
+    
+  
     if(isset($_POST["rensa"])) {
     
     }
-
-     define("IMG", "<img src='http://localhost:3000/server/ISGB22-Utveckling-av-webbapplikationer-HT25/Forelasningar/F8/bilder/");
 ?>  
 <!DOCTYPE html>
 <html lang="sv">
