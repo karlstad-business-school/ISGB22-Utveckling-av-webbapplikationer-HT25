@@ -1,6 +1,8 @@
 <?php
 
-/* Skapa DB med namn F9, tabell med namn tbllkund, id, personnummer, epost och losen. */
+/* 1. "Spara som" och döp filen till uppgift.php
+   2. Skapa DB med namn F9, tabell med namn tbllkund, id, personnummer, epost och losen. 
+*/
 
     function dbConnect() {
         try {
